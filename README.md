@@ -1,12 +1,4 @@
-# 🌌 WONDERVERSE - Yeni Nesil, Veri Odaklı Dijital Keşif Platformu
-
-![Project Status](https://img.shields.io/badge/Status-Live-success?style=for-the-badge&color=00F5D4)
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-5.0-092E20?style=for-the-badge&logo=django&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
-![Architecture](https://img.shields.io/badge/Architecture-Event--Driven-orange?style=for-the-badge)
-
-
+# 🌌 WONDERVERSE - Çocuk Portalı — API Tabanlı Eğlence & Keşif Platformu
 
 > ** "Sadece bir web sitesi değil; 9 farklı API ile beslenen, arka planda sürekli yaşayan ve kendini güncelleyen bir dijital evren."**
 
