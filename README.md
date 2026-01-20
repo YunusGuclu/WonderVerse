@@ -6,11 +6,9 @@
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![Architecture](https://img.shields.io/badge/Architecture-Event--Driven-orange?style=for-the-badge)
 
-<p align="center">
-  <img src="https://via.placeholder.com/1000x400?text=WonderVerse+Dashboard+Preview" alt="WonderVerse Arayüzü">
-</p>
 
-> **"Sadece bir web sitesi değil; 9 farklı API ile beslenen, arka planda sürekli yaşayan ve kendini güncelleyen bir dijital evren."**
+
+> ** "Sadece bir web sitesi değil; 9 farklı API ile beslenen, arka planda sürekli yaşayan ve kendini güncelleyen bir dijital evren."**
 
 ---
 
