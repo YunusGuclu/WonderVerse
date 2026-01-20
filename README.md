@@ -122,7 +122,7 @@ Projede içerikler aşağıdaki modellerle tutulur:
 <img width="1638" height="906" alt="image" src="https://github.com/user-attachments/assets/df9d5a12-de07-486d-8a61-4ddcb509fe35" />
 
 ---
-### Oyunlar
+### Oyun & Eğlence
 
 <img width="1638" height="906" alt="image" src="https://github.com/user-attachments/assets/5cc37241-1421-4f70-bf0d-5b9d9b6a5cb1" />
 <img width="1650" height="906" alt="image" src="https://github.com/user-attachments/assets/53b0f5e8-ddc2-461b-874e-0bf8d8849477" />
