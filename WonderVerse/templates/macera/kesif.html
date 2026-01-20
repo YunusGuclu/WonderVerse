@@ -1,0 +1,170 @@
+{% extends 'macera/base.html' %}
+
+{% block content %}
+<div class="text-center animate__animated animate__fadeIn">
+    <h1 class="section-title">🦸‍♂️ Sanat ve Kahramanlar Dünyası</h1>
+    <p class="lead text-muted">Süper kahramanların güçlerini keşfet, sanatın derinliklerine dal!</p>
+</div>
+
+<div class="row mb-5">
+    <h3 class="mb-4 text-danger fw-bold border-bottom pb-2">
+        <i class="fas fa-mask me-2"></i>Süper Kahramanlar Ligi
+    </h3>
+    
+    {% for hero in elsanatlari %}
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card h-100 border-0 shadow-sm hover-up" style="border-radius: 20px; overflow: hidden; background-color: #fff;">
+            
+            <div class="position-relative" style="height: 320px; overflow: hidden;">
+                <img src="{{ hero.resim }}" class="w-100 h-100" style="object-fit: cover; object-position: top; transition: transform 0.4s;" class="hero-img">
+                
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);"></div>
+                
+                <h4 class="text-white fw-bold position-absolute bottom-0 start-0 p-3 mb-0 text-shadow" style="font-family: 'Arial Black', sans-serif;">
+                    {{ hero.isim }}
+                </h4>
+            </div>
+            
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <small class="fw-bold text-dark" style="font-size: 0.8rem;">
+                        <i class="fas fa-brain me-1 text-primary"></i>Zeka
+                    </small>
+                    <small class="fw-bold text-primary">{{ hero.aciklama }}</small>
+                </div>
+                <div class="progress mb-2" style="height: 6px; border-radius: 10px; background-color: #e9ecef;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ hero.aciklama }}%;"></div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <small class="fw-bold text-dark" style="font-size: 0.8rem;">
+                        <i class="fas fa-dumbbell me-1 text-danger"></i>Güç
+                    </small>
+                    <small class="fw-bold text-danger">{{ hero.malzemeler }}</small>
+                </div>
+                <div class="progress mb-2" style="height: 6px; border-radius: 10px; background-color: #e9ecef;">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ hero.malzemeler }}%;"></div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <small class="fw-bold text-dark" style="font-size: 0.8rem;">
+                        <i class="fas fa-bolt me-1 text-warning"></i>Hız
+                    </small>
+                    <small class="fw-bold text-warning">{{ hero.zorluk }}</small>
+                </div>
+                <div class="progress mb-4" style="height: 6px; border-radius: 10px; background-color: #e9ecef;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{ hero.zorluk }}%;"></div>
+                </div>
+
+                <div class="mt-auto">
+                    <a href="https://www.youtube.com/results?search_query={{ hero.isim }}+superhero+scenes+hd" target="_blank" class="btn btn-dark w-100 rounded-pill fw-bold shadow-sm">
+                        <i class="fab fa-youtube me-2 text-danger"></i>Aksiyona Dal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-danger text-center shadow">
+            <i class="fas fa-mask fa-3x mb-3"></i><br>
+            Kahramanlar şu an dünyayı kurtarıyor! Birazdan dönecekler...
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="row" id="muze-bolumu">
+    <h3 class="mb-4 text-warning fw-bold border-bottom pb-2">
+        <i class="fas fa-palette me-2"></i>Sanal Sanat Müzesi
+    </h3>
+    
+    {% for eser in page_obj %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow card-art" style="border-radius: 15px;">
+                <div class="position-relative overflow-hidden" style="border-radius: 15px 15px 0 0;">
+                    <img src="{{ eser.resim }}" class="card-img-top art-img" style="height: 250px; object-fit: cover;">
+                    
+                    <div class="art-overlay">
+                        <a href="{{ eser.muze_linki }}" target="_blank" class="btn btn-light btn-sm rounded-pill fw-bold">
+                            <i class="fas fa-search me-1"></i> İncele
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-dark">{{ eser.baslik|truncatechars:35 }}</h5>
+                    <p class="card-text text-muted mb-1 small">
+                        <i class="fas fa-user-edit me-1"></i> {{ eser.sanatci }}
+                    </p>
+                    <p class="card-text text-muted small">
+                        <i class="far fa-calendar-alt me-1"></i> {{ eser.tarih }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            Müze şu an kapalı veya eserler taşınıyor.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+    <nav aria-label="Sayfalar">
+        <ul class="pagination pagination-lg">
+            
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link rounded-pill me-2 border-0 shadow-sm" href="?page={{ page_obj.previous_page_number }}#muze-bolumu">
+                    <i class="fas fa-arrow-left"></i> Önceki
+                </a>
+            </li>
+            {% endif %}
+            
+            <li class="page-item disabled">
+                <span class="page-link border-0 fw-bold text-dark bg-transparent">
+                    Sayfa {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+            
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link rounded-pill ms-2 border-0 shadow-sm" href="?page={{ page_obj.next_page_number }}#muze-bolumu">
+                    Sonraki <i class="fas fa-arrow-right"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+<style>
+    /* Kartların üzerine gelince yukarı kalkma efekti */
+    .hover-up { transition: transform 0.3s; }
+    .hover-up:hover { transform: translateY(-8px); }
+    .hover-up:hover img { transform: scale(1.05); }
+
+    /* Metin gölgesi (Resim üzerindeki yazılar için) */
+    .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+    
+    /* Sanat Eseri Resim Efekti */
+    .card-art .art-img { transition: transform 0.5s; }
+    .card-art:hover .art-img { transform: scale(1.1); }
+    
+    /* Resim üzerindeki butonun görünür olma efekti */
+    .art-overlay { 
+        position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+        background: rgba(0,0,0,0.4); 
+        display: flex; align-items: center; justify-content: center; 
+        opacity: 0; transition: opacity 0.3s; 
+    }
+    .card-art:hover .art-overlay { opacity: 1; }
+    
+    /* Pagination Renkleri */
+    .page-link { color: #FF6B6B; }
+    .page-link:hover { background-color: #FF6B6B; color: white; }
+</style>
+{% endblock %}

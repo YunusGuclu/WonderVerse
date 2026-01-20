@@ -1,0 +1,80 @@
+{% extends 'macera/base.html' %}
+
+{% block content %}
+<div class="text-center animate__animated animate__fadeInDown">
+    <h1 class="section-title">🥣 Minik Şefler Mutfağı</h1>
+    <p class="lead text-muted">Sağlıklı, eğlenceli ve enerji dolu tarifler!</p>
+</div>
+
+<div class="row">
+    {% for yemek in yemekler %}
+    <div class="col-md-6 col-lg-4 mb-5">
+        <div class="card h-100 shadow border-0 hover-effect" style="border-radius: 20px; overflow: hidden; transition: transform 0.3s;">
+            
+            <a href="{% url 'mutfak_detay' yemek.id %}" class="text-decoration-none">
+                <div class="position-relative">
+                    <img src="{{ yemek.resim }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <span class="position-absolute top-0 end-0 bg-success text-white px-3 py-1 m-2 rounded-pill fw-bold shadow">
+                        ❤️ {{ yemek.saglik_puani }} Puan
+                    </span>
+                </div>
+            </a>
+            
+            <div class="card-body d-flex flex-column">
+                <a href="{% url 'mutfak_detay' yemek.id %}" class="text-decoration-none text-dark">
+                    <h4 class="card-title fw-bold">{{ yemek.isim }}</h4>
+                </a>
+                
+                <div class="d-flex align-items-center mb-3 text-muted small">
+                    <i class="fas fa-clock me-1 text-warning"></i> {{ yemek.hazirlama_suresi }} Dakika Hazırlık
+                </div>
+                
+                <p class="card-text text-muted" style="font-size: 0.9rem;">{{ yemek.ozet|truncatechars:80 }}</p>
+                
+                <div class="bg-light p-3 rounded mt-3 mb-3">
+                    <h6 class="fw-bold text-center mb-3 border-bottom pb-2">⚡ Güç Değerleri (Besin)</h6>
+                    <div class="row text-center">
+                        <div class="col-3">
+                            <div class="fw-bold text-warning">{{ yemek.kalori|floatformat:0 }}</div>
+                            <small style="font-size: 10px;">Kalori</small>
+                        </div>
+                        <div class="col-3">
+                            <div class="fw-bold text-danger">{{ yemek.protein }}</div>
+                            <small style="font-size: 10px;">Protein</small>
+                        </div>
+                        <div class="col-3">
+                            <div class="fw-bold text-primary">{{ yemek.karbonhidrat }}</div>
+                            <small style="font-size: 10px;">Karb</small>
+                        </div>
+                        <div class="col-3">
+                            <div class="fw-bold text-info">{{ yemek.yag }}</div>
+                            <small style="font-size: 10px;">Yağ</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-auto">
+                    <a href="{% url 'mutfak_detay' yemek.id %}" class="btn btn-primary w-100 rounded-pill fw-bold">
+                        🍽️ Tarifi İncele
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center">
+        <div class="alert alert-warning py-5 shadow">
+            <i class="fas fa-utensils fa-3x mb-3"></i><br>
+            Henüz yemek pişmedi! Fırın ısınıyor...
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+</style>
+{% endblock %}

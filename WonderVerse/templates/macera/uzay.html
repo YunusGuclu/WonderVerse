@@ -1,0 +1,156 @@
+{% extends 'macera/base.html' %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;600&display=swap" rel="stylesheet">
+
+<div class="stars-container">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+</div>
+
+<div class="container position-relative z-2 animate__animated animate__fadeIn">
+
+    <div class="text-center mb-5 mt-4">
+        <h1 class="display-4 fw-bold text-white space-font text-shadow">🚀 Uzay Üssü</h1>
+        <p class="lead text-info">Güneş sistemini ve roketleri keşfet!</p>
+    </div>
+
+    <div class="row mb-5 justify-content-center">
+        <div class="col-lg-10">
+            <div class="card bg-dark text-white border-0 shadow-lg overflow-hidden glass-panel" style="border-radius: 25px;">
+                <div class="row g-0 align-items-center">
+                    
+                    <div class="col-md-5 text-center p-4">
+                        {% if gunun_gokcismi %}
+                        <img src="{{ gunun_gokcismi.resim }}" class="img-fluid rounded-circle shadow-lg main-planet-img">
+                        {% else %}
+                        <i class="fas fa-satellite-dish fa-5x text-secondary"></i>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-7 p-4">
+                        {% if gunun_gokcismi %}
+                            <span class="badge bg-warning text-dark px-3 py-1 rounded-pill mb-2">
+                                <i class="fas fa-star me-1"></i>Günün Gökcismi
+                            </span>
+                            <h2 class="fw-bold space-font text-info display-5 mb-2">{{ gunun_gokcismi.isim }}</h2>
+                            <h5 class="text-white-50 mb-3">{{ gunun_gokcismi.tur }}</h5>
+                            <p class="lead fw-light">{{ gunun_gokcismi.ozellik }}</p>
+                            
+                            <div class="row mt-4 text-center g-2">
+                                <div class="col-6">
+                                    <div class="p-2 border border-secondary rounded glass-mini">
+                                        <i class="fas fa-temperature-high text-danger mb-1"></i>
+                                        <div class="small text-white-50">Sıcaklık</div>
+                                        <div class="fw-bold text-info">{{ gunun_gokcismi.sicaklik }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-2 border border-secondary rounded glass-mini">
+                                        <i class="fas fa-weight-hanging text-success mb-1"></i>
+                                        <div class="small text-white-50">Yerçekimi</div>
+                                        <div class="fw-bold text-info">{{ gunun_gokcismi.yercekimi }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <h3>Veri Yükleniyor...</h3>
+                            <p>Lütfen terminalden verileri çekin.</p>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <h3 class="text-white space-font mb-4 border-start border-4 border-info ps-3">
+            <i class="fas fa-globe-americas me-2"></i>Gezegen Ansiklopedisi
+        </h3>
+        
+        {% for g in gezegenler %}
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 bg-transparent border-0 planet-card">
+                <div class="card-body text-center p-3 glass-panel h-100 d-flex flex-column align-items-center">
+                    <img src="{{ g.resim }}" class="planet-thumb mb-3 shadow">
+                    <h5 class="text-white fw-bold mb-1">{{ g.isim }}</h5>
+                    <small class="d-block text-white-50 mb-2">{{ g.tur }}</small>
+                    <span class="badge bg-dark border border-secondary text-info mt-auto">{{ g.sicaklik }}</span>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-white text-center">
+            <div class="alert alert-dark">Gezegen verisi bulunamadı. Lütfen yönetici panelinden verileri yükleyin.</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row mb-5">
+        <h3 class="text-white space-font mb-4 border-start border-4 border-danger ps-3">
+            <i class="fas fa-rocket me-2"></i>Gelecek Roket Fırlatmaları
+        </h3>
+        
+        {% for gorev in spacex_list %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow hover-glow glass-panel">
+                <div class="row g-0 h-100 align-items-center p-2">
+                    <div class="col-3 text-center">
+                        <img src="{{ gorev.resim }}" class="img-fluid rounded-circle border border-2 border-danger p-1" style="width: 70px; height: 70px; object-fit: cover; background: white;">
+                    </div>
+                    <div class="col-9">
+                        <div class="card-body p-2 text-white">
+                            <h5 class="card-title fw-bold text-danger space-font mb-1">{{ gorev.gorev_adi }}</h5>
+                            <p class="card-text small text-white-50 mb-2">
+                                <i class="far fa-clock me-1 text-warning"></i>{{ gorev.firlatma_tarihi }}
+                            </p>
+                            <p class="small text-white-50 mb-0">{{ gorev.detay|truncatechars:60 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<style>
+    /* CSS YILDIZLAR (Resim Yok!) */
+    body { background-color: #000; overflow-x: hidden; }
+    .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%); overflow: hidden; }
+    
+    /* Saf CSS ile Yıldız Üretimi */
+    .stars, .stars2, .stars3 {
+        width: 1px; height: 1px; background: transparent;
+        box-shadow: 1744px 122px #FFF , 134px 1321px #FFF , 422px 562px #FFF, 876px 211px #FFF, 120px 800px #FFF, 1700px 500px #FFF, 1100px 900px #FFF, 500px 100px #FFF;
+        animation: animStar 50s linear infinite;
+    }
+    .stars2 { width: 2px; height: 2px; animation: animStar 100s linear infinite; }
+    .stars3 { width: 3px; height: 3px; animation: animStar 150s linear infinite; }
+
+    @keyframes animStar { from { transform: translateY(0px); } to { transform: translateY(-2000px); } }
+
+    /* CAM EFEKTİ */
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+    }
+    .glass-mini { background: rgba(0,0,0,0.3); }
+
+    /* GEZEGEN EFEKTLERİ */
+    .main-planet-img { width: 100%; max-width: 300px; animation: float 6s ease-in-out infinite; }
+    .planet-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); transition: transform 0.3s; }
+    .planet-card:hover .planet-thumb { transform: scale(1.2) rotate(10deg); box-shadow: 0 0 20px rgba(255,255,255,0.5); }
+    
+    .space-font { font-family: 'Orbitron', sans-serif; }
+    .text-shadow { text-shadow: 0 0 15px rgba(0,200,255,0.6); }
+
+    @keyframes float { 0% {transform: translateY(0px);} 50% {transform: translateY(-15px);} 100% {transform: translateY(0px);} }
+</style>
+{% endblock %}

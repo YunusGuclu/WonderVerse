@@ -1,0 +1,86 @@
+{% extends 'macera/base.html' %}
+
+{% block content %}
+<div class="container animate__animated animate__fadeIn">
+    
+    <a href="{% url 'mutfak' %}" class="btn btn-outline-secondary mb-4 rounded-pill px-4">
+        <i class="fas fa-arrow-left me-2"></i>Tariflere Geri Dön
+    </a>
+
+    <div class="row">
+        <div class="col-lg-5 mb-4">
+            <div class="card border-0 shadow-lg overflow-hidden mb-4" style="border-radius: 20px;">
+                <img src="{{ yemek.resim }}" class="img-fluid w-100" style="height: 400px; object-fit: cover;">
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+                    <div class="bg-dark bg-opacity-50 text-white p-3 backdrop-blur">
+                        <h2 class="fw-bold mb-0">{{ yemek.isim }}</h2>
+                        <div class="mt-2">
+                            <span class="badge bg-warning text-dark me-2"><i class="fas fa-clock"></i> {{ yemek.hazirlama_suresi }} dk</span>
+                            <span class="badge bg-success"><i class="fas fa-heart"></i> {{ yemek.saglik_puani }} Puan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<div class="card border-0 shadow-sm bg-dark" style="border-radius: 20px;">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold text-white mb-3">⚡ Enerji Analizi</h5>
+                    
+                    <div class="d-flex justify-content-around">
+                        <div class="p-2">
+                            <i class="fas fa-fire fa-2x text-danger mb-2"></i>
+                            <h5 class="fw-bold text-white mb-0">{{ yemek.kalori|floatformat:0 }}</h5>
+                            <small class="text-white-50">Kalori</small>
+                        </div>
+
+                        <div class="p-2">
+                            <i class="fas fa-dumbbell fa-2x text-primary mb-2"></i>
+                            <h5 class="fw-bold text-white mb-0">{{ yemek.protein }}</h5>
+                            <small class="text-white-50">Protein</small>
+                        </div>
+
+                        <div class="p-2">
+                            <i class="fas fa-bread-slice fa-2x text-warning mb-2"></i>
+                            <h5 class="fw-bold text-white mb-0">{{ yemek.karbonhidrat }}</h5>
+                            <small class="text-white-50">Karb</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            
+            <div class="card border-0 shadow-sm mb-4" style="border-radius: 20px; background-color: #fff3cd;">
+                <div class="card-body">
+                    <h3 class="fw-bold text-warning mb-3">
+                        <i class="fas fa-shopping-basket me-2"></i>Malzemeler
+                    </h3>
+                    <p class="lead" style="line-height: 1.8; color: #555;">
+                        {{ yemek.malzemeler }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm" style="border-radius: 20px; background-color: #e8f5e9;">
+                <div class="card-body p-4">
+                    <h3 class="fw-bold text-success mb-4">
+                        <i class="fas fa-hat-chef me-2"></i>Nasıl Yapılır?
+                    </h3>
+                    <div class="tarif-metni" style="font-size: 1.15rem; line-height: 1.9; color: #333;">
+                        {{ yemek.tarif_detay|linebreaks }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Resim üzerindeki yazı alanı için bulanıklık efekti */
+    .backdrop-blur {
+        backdrop-filter: blur(5px);
+    }
+</style>
+{% endblock %}

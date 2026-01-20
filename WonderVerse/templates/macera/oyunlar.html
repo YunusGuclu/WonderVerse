@@ -1,0 +1,258 @@
+{% extends 'macera/base.html' %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<div class="container animate__animated animate__fadeIn">
+
+    <div class="text-center mb-5 mt-4">
+        <h1 class="display-4 fw-bold text-white section-title-font" style="text-shadow: 3px 3px 0px #000;">
+            🎮 Oyun Kutusu
+        </h1>
+        <p class="lead text-white">İndirme yok, kurulum yok! Tıkla ve hemen oyna.</p>
+    </div>
+
+    <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+        <span class="badge bg-warning text-dark fs-6 px-3 py-2 shadow hover-bounce">Tümü</span>
+        <span class="badge bg-danger fs-6 px-3 py-2 shadow hover-bounce">Yarış 🏎️</span>
+        <span class="badge bg-success fs-6 px-3 py-2 shadow hover-bounce">Macera 🌴</span>
+        <span class="badge bg-info text-dark fs-6 px-3 py-2 shadow hover-bounce">Zeka 🧩</span>
+        <span class="badge bg-primary fs-6 px-3 py-2 shadow hover-bounce">Spor ⚽</span>
+    </div>
+
+    <div class="row">
+        {% for oyun in html5_oyunlar %}
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 border-0 shadow-lg hover-up game-card">
+<div class="position-relative">
+    <img src="{{ oyun.resim }}" 
+         class="card-img-top" 
+         style="height: 160px; object-fit: cover; border-radius: 15px 15px 0 0;"
+         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500';">
+    <span class="position-absolute top-0 end-0 badge bg-primary m-2">{{ oyun.kategori }}</span>
+</div>
+                <div class="card-body text-center p-3 d-flex flex-column bg-dark text-white" style="border-radius: 0 0 15px 15px;">
+                    <h6 class="fw-bold mb-3 text-truncate">{{ oyun.baslik }}</h6>
+                    
+                    <button type="button" class="btn btn-warning w-100 rounded-pill fw-bold mt-auto shadow-sm play-btn" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#oyunModal" 
+                            onclick="oyunuBaslat('{{ oyun.iframe_url }}', '{{ oyun.baslik }}')">
+                        <i class="fas fa-play me-1"></i>OYNA
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <hr class="my-5 border-3 border-light opacity-25">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-warning section-title-font" style="text-shadow: 2px 2px 0px #000;">
+            ⚡ Pokemon Dünyası
+        </h1>
+        <p class="lead text-white-50">Hepsini keşfet, seslerini dinle!</p>
+    </div>
+
+    <div class="row mb-4">
+        {% for poke in pokemonlar %}
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100 shadow border-2 poke-card" style="border-color: #FFD700; border-radius: 20px; overflow: hidden;">
+                
+                <div class="text-center pt-4 bg-light position-relative">
+                    <img src="{{ poke.resim }}" class="card-img-top poke-img" alt="{{ poke.isim }}" 
+                         style="height: 150px; object-fit: contain;">
+                    <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">{{ poke.tur }}</span>
+                </div>
+
+                <div class="card-body d-flex flex-column">
+                    <h4 class="fw-bold text-center text-uppercase mb-3">{{ poke.isim }}</h4>
+
+                    <div class="row text-center mb-3 bg-light mx-0 py-2 rounded small border">
+                        <div class="col-6 border-end">
+                            <i class="fas fa-ruler-vertical text-muted"></i> <strong>{{ poke.boy }} m</strong>
+                        </div>
+                        <div class="col-6">
+                            <i class="fas fa-weight-hanging text-muted"></i> <strong>{{ poke.kilo }} kg</strong>
+                        </div>
+                    </div>
+
+                    <div class="text-center mb-2">
+                        <small class="text-muted">✨ Yetenek</small><br>
+                        <span class="fw-bold text-primary">{{ poke.yetenekler }}</span>
+                    </div>
+
+                    <div class="progress mb-2" style="height: 18px; border-radius: 10px;">
+                        <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" 
+                             role="progressbar" 
+                             style="width: {{ poke.can|default:50 }}%">
+                             HP: {{ poke.can|default:50 }}
+                        </div>
+                    </div>
+                    <div class="text-center small text-muted fw-bold mb-3">XP: {{ poke.guc }}</div>
+
+                    {% if poke.ses_dosyasi %}
+                    <div class="mt-auto border-top pt-2">
+                        <small class="text-muted mb-1 d-block text-center"><i class="fas fa-volume-up"></i> Sesi Dinle:</small>
+                        <audio controls class="w-100" style="height: 30px;">
+                            <source src="{{ poke.ses_dosyasi }}" type="audio/ogg">
+                        </audio>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning text-center">Henüz Pokemon yakalanmadı. Sayfayı yenile!</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <hr class="my-5 border-3 border-light opacity-25">
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow h-100" style="background-color: #e3f2fd; border-radius: 20px;">
+                <div class="card-header bg-info text-white fw-bold d-flex align-items-center py-3" style="border-radius: 20px 20px 0 0;">
+                    <i class="fas fa-laugh-squint fa-2x me-2"></i>
+                    <h4 class="mb-0">Gülmece Zamanı</h4>
+                </div>
+                <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                    {% if sakalar %}
+                        <ul class="list-group list-group-flush bg-transparent">
+                            {% for saka in sakalar %}
+                            <li class="list-group-item bg-transparent border-bottom border-info-subtle py-3">
+                                <p class="mb-2 fw-bold text-primary"><i class="fas fa-question-circle me-1"></i> {{ saka.soru }}</p>
+                                <div class="bg-white d-inline-block px-3 py-1 rounded-pill shadow-sm">
+                                    <span class="fst-italic text-success fw-bold">😂 {{ saka.cevap }}</span>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-center p-3 text-muted">Şakalar yükleniyor...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow h-100" style="background-color: #e8f5e9; border-radius: 20px;">
+                <div class="card-header bg-success text-white fw-bold d-flex align-items-center py-3" style="border-radius: 20px 20px 0 0;">
+                    <i class="fas fa-brain fa-2x me-2"></i>
+                    <h4 class="mb-0">Biliyor musun?</h4>
+                </div>
+                <div class="card-body">
+                    {% if sorular %}
+                        {% for soru in sorular %}
+                        <div class="alert bg-white border-start border-4 border-success shadow-sm mb-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="badge bg-secondary">{{ soru.kategori }}</span>
+                                <small class="text-muted fw-bold">{{ soru.zorluk|title }}</small>
+                            </div>
+                            <p class="mb-2 fw-bold text-dark fs-5">{{ soru.soru|safe }}</p>
+                            <div class="mt-2 pt-2 border-top bg-light rounded p-2 text-center">
+                                <small class="text-success fw-bold fs-6">
+                                    <i class="fas fa-check-circle me-1"></i>Cevap: {{ soru.dogru_cevap }}
+                                </small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-center p-3 text-muted">Sorular hazırlanıyor...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="oyunModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-fullscreen"> 
+        <div class="modal-content bg-dark">
+            
+            <div class="modal-header border-0 bg-black py-2">
+                <h5 class="modal-title text-warning" id="oyunBaslik"><i class="fas fa-gamepad me-2"></i>Oyun Yükleniyor...</h5>
+                <button type="button" class="btn btn-danger rounded-pill fw-bold px-4 ms-auto" data-bs-dismiss="modal" onclick="oyunuDurdur()">
+                    <i class="fas fa-times me-2"></i>KAPAT
+                </button>
+            </div>
+
+            <div class="modal-body p-0 d-flex justify-content-center align-items-center bg-black position-relative">
+                
+                <div class="position-absolute text-white-50" style="z-index: 0;">
+                    <div class="spinner-border text-warning mb-3" role="status"></div>
+                    <div>Oyun Sunucusuna Bağlanıyor...</div>
+                </div>
+
+                <iframe id="oyunCercevesi" 
+                        src="" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        scrolling="no"
+                        allowfullscreen="true" 
+                        sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation allow-modals allow-popups"
+                        allow="autoplay; fullscreen; gyroscope; accelerometer; encrypted-media"
+                        style="max-width: 100%; max-height: 100%; z-index: 10; background: #000; border: none;">
+                </iframe>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Oyun Başlatma
+    function oyunuBaslat(url, baslik) {
+        var frame = document.getElementById('oyunCercevesi');
+        frame.src = url; 
+        document.getElementById('oyunBaslik').innerText = "🎮 " + baslik;
+    }
+
+    // Oyun Durdurma
+    function oyunuDurdur() {
+        var frame = document.getElementById('oyunCercevesi');
+        frame.src = ""; 
+    }
+</script>
+
+<style>
+    /* Font Ayarı */
+    .section-title-font {
+        font-family: 'Fredoka One', cursive;
+    }
+
+    /* Oyun Kartı Efektleri */
+    .game-card {
+        border-radius: 15px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        background: #212529;
+    }
+    .game-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3) !important;
+        border: 2px solid #ffc107;
+    }
+    .play-btn { transition: all 0.2s; }
+    .play-btn:hover { transform: scale(1.05); }
+
+    /* Pokemon Kart Efektleri */
+    .poke-img { transition: transform 0.3s; }
+    .poke-card:hover .poke-img { transform: scale(1.15) rotate(5deg); }
+    .poke-card:hover { box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4) !important; }
+
+    /* Badge Efekti */
+    .hover-bounce { transition: transform 0.2s; cursor: default; }
+    .hover-bounce:hover { transform: translateY(-3px); }
+
+    /* Modal Fullscreen */
+    .modal-fullscreen .modal-body {
+        height: 100vh;
+        width: 100vw;
+    }
+</style>
+{% endblock %}

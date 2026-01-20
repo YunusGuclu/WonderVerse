@@ -1,0 +1,167 @@
+{% extends 'macera/base.html' %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<div class="container animate__animated animate__fadeIn">
+
+    <div class="p-5 mb-5 rounded-4 text-center shadow-lg welcome-banner position-relative overflow-hidden">
+        <div class="position-relative z-1">
+            <h1 class="display-3 fw-bold text-white mb-3" style="font-family: 'Fredoka One', cursive; text-shadow: 4px 4px 0px #000;">
+                🚀 Maceraya Hazır Mısın?
+            </h1>
+            <p class="fs-4 text-white fw-bold" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                Uzayı keşfet, kahramanlarla tanış, yemek yap ve oyunlar oyna!
+            </p>
+        </div>
+        <div class="circle-decoration one"></div>
+        <div class="circle-decoration two"></div>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-lg hover-scale overflow-hidden" style="background: #2c3e50; border-radius: 25px;">
+                <div class="row g-0 h-100">
+                    <div class="col-7 p-4 d-flex flex-column justify-content-center text-white position-relative z-1">
+                        <div class="mb-3">
+                            <i class="fas fa-rocket fa-3x text-warning animate__animated animate__pulse animate__infinite"></i>
+                        </div>
+                        <h2 class="fw-bold">Uzay İstasyonu</h2>
+                        <p class="opacity-75 small">Gezegenleri, yıldızları ve NASA'nın günlük fotoğraflarını incele.</p>
+                        <a href="{% url 'uzay' %}" class="btn btn-warning rounded-pill fw-bold w-75 stretched-link shadow">Fırlat! 🚀</a>
+                    </div>
+                    
+                    <div class="col-5 bg-black" style="
+                        background-image: url('{% if son_uzay.url %}{{ son_uzay.url }}{% else %}https://images.unsplash.com/photo-1517976487492-5750f3195933?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80{% endif %}'); 
+                        background-size: cover; 
+                        background-position: center; 
+                        min-height: 250px;
+                        border-left: 3px solid rgba(255,255,255,0.1);">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-lg hover-scale text-white overflow-hidden mb-4" style="background: linear-gradient(45deg, #FF9966, #FF5E62); border-radius: 25px;">
+                <div class="card-body p-4 d-flex align-items-center justify-content-between">
+                    <div>
+                        <h2 class="fw-bold"><i class="fas fa-paw me-2"></i>Hayvanlar</h2>
+                        <p class="mb-3 small">Sevimli kedi ve köpek dostlarımız!</p>
+                        <a href="{% url 'hayvanlar' %}" class="btn btn-light text-danger rounded-pill fw-bold stretched-link">Miyav! 🐱</a>
+                    </div>
+                    {% if son_hayvan %}
+                    <img src="{{ son_hayvan.resim }}" class="rounded-circle border border-3 border-white shadow" style="width: 100px; height: 100px; object-fit: cover;">
+                    {% else %}
+                    <i class="fas fa-dog fa-4x opacity-50"></i>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-lg hover-scale text-white overflow-hidden" style="background: linear-gradient(45deg, #8E2DE2, #4A00E0); border-radius: 25px;">
+                <div class="card-body p-4 d-flex align-items-center justify-content-between">
+                    <div>
+                        <h2 class="fw-bold"><i class="fas fa-gamepad me-2"></i>Oyunlar</h2>
+                        <p class="mb-3 small">Pokemonlar, şakalar ve bilmeceler!</p>
+                        <a href="{% url 'oyunlar' %}" class="btn btn-light text-primary rounded-pill fw-bold stretched-link">Oyna 🎮</a>
+                    </div>
+                    {% if son_poke %}
+                    <img src="{{ son_poke.resim }}" class="animate__animated animate__bounce animate__infinite animate__slow" style="width: 90px;">
+                    {% else %}
+                    <i class="fas fa-dice fa-4x opacity-50"></i>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-lg hover-scale text-white text-center p-4" style="background: linear-gradient(135deg, #11998e, #38ef7d); border-radius: 25px;">
+                <div class="mb-3 icon-box mx-auto bg-white text-success rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 80px; height: 80px;">
+                    <i class="fas fa-mask fa-3x"></i>
+                </div>
+                <h3 class="fw-bold">Kahramanlar</h3>
+                <p class="small">Süper kahramanların güçlerini keşfet.</p>
+                
+                {% if son_kahraman %}
+                <div class="bg-white text-dark rounded-3 p-2 mb-3 shadow-sm d-flex align-items-center gap-2 text-start">
+                    <img src="{{ son_kahraman.resim }}" class="rounded" width="50" height="50" style="object-fit: cover; object-position: top;">
+                    <div style="font-size: 0.85rem; line-height: 1.2;">
+                        <strong>{{ son_kahraman.isim|truncatechars:15 }}</strong><br>
+                        <span class="text-success small">Şimdi incele!</span>
+                    </div>
+                </div>
+                {% endif %}
+
+                <a href="{% url 'kesif' %}" class="btn btn-light text-success w-100 rounded-pill fw-bold stretched-link">Keşfe Çık 🌍</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-lg hover-scale text-white text-center p-4" style="background: linear-gradient(135deg, #FF416C, #FF4B2B); border-radius: 25px;">
+                <div class="mb-3 icon-box mx-auto bg-white text-danger rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 80px; height: 80px;">
+                    <i class="fas fa-utensils fa-3x"></i>
+                </div>
+                <h3 class="fw-bold">Minik Şef</h3>
+                <p class="small">En lezzetli ve kolay tarifler burada.</p>
+
+                {% if son_yemek %}
+                <div class="bg-white text-dark rounded-3 p-2 mb-3 shadow-sm d-flex align-items-center gap-2 text-start">
+                    <img src="{{ son_yemek.resim }}" class="rounded" width="50" height="50" style="object-fit: cover;">
+                    <div style="font-size: 0.85rem; line-height: 1.2;">
+                        <strong>{{ son_yemek.isim|truncatechars:18 }}</strong><br>
+                        <span class="text-danger small">Tarifi Gör!</span>
+                    </div>
+                </div>
+                {% endif %}
+
+                <a href="{% url 'mutfak' %}" class="btn btn-light text-danger w-100 rounded-pill fw-bold stretched-link">Mutfağa Gir 🥣</a>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-lg-4">
+            <div class="card h-100 border-0 shadow-lg bg-warning text-dark p-4 text-center position-relative overflow-hidden" style="border-radius: 25px;">
+                <h4 class="fw-bold text-white mb-3" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.2);"><i class="fas fa-laugh-squint me-2"></i>Günün Şakası</h4>
+                <div class="bg-white p-3 rounded-4 shadow-sm position-relative h-100 d-flex flex-column justify-content-center">
+                    <i class="fas fa-quote-left text-warning opacity-25 fa-2x position-absolute top-0 start-0 m-2"></i>
+                    {% if son_saka %}
+                    <p class="fw-bold mb-2">{{ son_saka.soru }}</p>
+                    <span class="badge bg-primary rounded-pill text-wrap lh-sm py-2">{{ son_saka.cevap }}</span>
+                    {% else %}
+                    <p>Bugün şaka yok mu? O zaman sen bir tane yap!</p>
+                    {% endif %}
+                </div>
+                <i class="fas fa-smile-beam fa-6x text-white opacity-25 position-absolute bottom-0 end-0 m-n3"></i>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .welcome-banner {
+        background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+        transition: transform 0.3s;
+    }
+    
+    .circle-decoration {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+    }
+    .circle-decoration.one { width: 150px; height: 150px; top: -50px; left: -50px; }
+    .circle-decoration.two { width: 100px; height: 100px; bottom: -30px; right: 20px; }
+
+    .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .hover-scale:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3) !important;
+        z-index: 10;
+    }
+
+    .stretched-link::after {
+        position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+        z-index: 1; content: "";
+    }
+</style>
+{% endblock %}
