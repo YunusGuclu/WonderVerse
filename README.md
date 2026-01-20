@@ -105,33 +105,42 @@ Projede içerikler aşağıdaki modellerle tutulur:
 * **Kahraman Analizi:** Süper kahraman dünyasının tanıtılması Zeka, Güç ve Hız vb. puanların karşılaştırılması.
 
 ---
-##🌌 Arayüzler
+## 🌌Arayüzler
+
 ### Anasayfa
+
 <img width="1638" height="907" alt="image" src="https://github.com/user-attachments/assets/12ce982f-3498-4bb7-a7d8-3b6fcca41c83" />
 
+---
 ### Uzay
+
 <img width="1632" height="906" alt="image" src="https://github.com/user-attachments/assets/1eebef6b-0ed5-4bdf-ba99-57285d742b3e" />
 
+---
 ### Hayvanlar
+
 <img width="1638" height="906" alt="image" src="https://github.com/user-attachments/assets/df9d5a12-de07-486d-8a61-4ddcb509fe35" />
 
+---
 ### Oyunlar
+
 <img width="1638" height="906" alt="image" src="https://github.com/user-attachments/assets/5cc37241-1421-4f70-bf0d-5b9d9b6a5cb1" />
 <img width="1650" height="906" alt="image" src="https://github.com/user-attachments/assets/53b0f5e8-ddc2-461b-874e-0bf8d8849477" />
 <img width="1635" height="907" alt="image" src="https://github.com/user-attachments/assets/d51753a2-c922-495f-b901-fd60d7a1c808" />
 
+---
 ### Keşif
+
 <img width="1642" height="907" alt="image" src="https://github.com/user-attachments/assets/57dd4848-5251-4fa8-b189-20408364e067" />
 <img width="1631" height="906" alt="image" src="https://github.com/user-attachments/assets/03afd2de-ce49-4b52-8b10-feeb4c455180" />
 
-
+---
 ### Mutfak
+
 <img width="1633" height="902" alt="image" src="https://github.com/user-attachments/assets/eae7c3c1-5875-435c-97be-4151e8a8ecaf" />
 <img width="1631" height="902" alt="image" src="https://github.com/user-attachments/assets/9c8f68fb-906d-48d3-b451-80acadeb4eca" />
 
-
-
-### Anasayfa
+---
 
 ## 🧰 Kullanılan Teknolojiler & Kütüphaneler
 
