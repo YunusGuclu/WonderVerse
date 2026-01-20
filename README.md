@@ -76,7 +76,7 @@ Projede içerikler aşağıdaki modellerle tutulur:
 - `Oyun` → başlık, resim, iframe_url, kategori
 - `Aktivite` → (hazır alan) aktivite önerileri için
   
-****Ayrıca her model için veritabanı kayıtları sınırsız büyümesin diye “limit temizliği” uygulanır.****
+> Ayrıca her model için veritabanı kayıtları sınırsız büyümesin diye “limit temizliği” uygulanır.
 ---
 ## 📂 Modüller ve Özellikler
 
