@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 class ÇocukConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'Çocuk'
+    name = 'WonderVerse'
 
     def ready(self):
         from . import tasks
