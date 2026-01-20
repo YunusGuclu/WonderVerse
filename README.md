@@ -195,3 +195,17 @@ exit()
 ```
 python manage.py runserver
 ```
+
+---
+
+## 👨‍💻 Geliştirici
+
+**Yunus Güçlü**  
+Software Engineer
+
+---
+
+## 📄 Lisans
+
+Bu proje kişisel eğitim ve portföy amacıyla geliştirilmiştir.  
+Ticari kullanım için geliştirici izni gereklidir.
