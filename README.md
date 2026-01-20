@@ -122,12 +122,12 @@ Projede içerikler aşağıdaki modellerle tutulur:
 
 ### Keşif
 <img width="1642" height="907" alt="image" src="https://github.com/user-attachments/assets/57dd4848-5251-4fa8-b189-20408364e067" />
-<img width="1640" height="897" alt="image" src="https://github.com/user-attachments/assets/ead23d5e-6f19-4c1e-85bd-ff2adc5494f8" />
+<img width="1631" height="906" alt="image" src="https://github.com/user-attachments/assets/03afd2de-ce49-4b52-8b10-feeb4c455180" />
 
 
 ### Mutfak
-<img width="1638" height="908" alt="image" src="https://github.com/user-attachments/assets/fbb3c7ea-721d-4aa4-853b-00582a74385f" />
-<img width="1632" height="907" alt="image" src="https://github.com/user-attachments/assets/40b25715-0d4d-4c80-97d3-17d53f3ce80f" />
+<img width="1633" height="902" alt="image" src="https://github.com/user-attachments/assets/eae7c3c1-5875-435c-97be-4151e8a8ecaf" />
+<img width="1631" height="902" alt="image" src="https://github.com/user-attachments/assets/9c8f68fb-906d-48d3-b451-80acadeb4eca" />
 
 
 
