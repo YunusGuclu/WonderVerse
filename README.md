@@ -105,6 +105,34 @@ Projede içerikler aşağıdaki modellerle tutulur:
 * **Kahraman Analizi:** Süper kahraman dünyasının tanıtılması Zeka, Güç ve Hız vb. puanların karşılaştırılması.
 
 ---
+##🌌 Arayüzler
+### Anasayfa
+<img width="1638" height="907" alt="image" src="https://github.com/user-attachments/assets/12ce982f-3498-4bb7-a7d8-3b6fcca41c83" />
+
+### Uzay
+<img width="1632" height="906" alt="image" src="https://github.com/user-attachments/assets/1eebef6b-0ed5-4bdf-ba99-57285d742b3e" />
+
+### Hayvanlar
+<img width="1638" height="906" alt="image" src="https://github.com/user-attachments/assets/df9d5a12-de07-486d-8a61-4ddcb509fe35" />
+
+### Oyunlar
+<img width="1638" height="906" alt="image" src="https://github.com/user-attachments/assets/5cc37241-1421-4f70-bf0d-5b9d9b6a5cb1" />
+<img width="1650" height="906" alt="image" src="https://github.com/user-attachments/assets/53b0f5e8-ddc2-461b-874e-0bf8d8849477" />
+<img width="1635" height="907" alt="image" src="https://github.com/user-attachments/assets/d51753a2-c922-495f-b901-fd60d7a1c808" />
+
+### Keşif
+<img width="1642" height="907" alt="image" src="https://github.com/user-attachments/assets/57dd4848-5251-4fa8-b189-20408364e067" />
+<img width="1640" height="897" alt="image" src="https://github.com/user-attachments/assets/ead23d5e-6f19-4c1e-85bd-ff2adc5494f8" />
+
+
+### Mutfak
+<img width="1638" height="908" alt="image" src="https://github.com/user-attachments/assets/fbb3c7ea-721d-4aa4-853b-00582a74385f" />
+<img width="1632" height="907" alt="image" src="https://github.com/user-attachments/assets/40b25715-0d4d-4c80-97d3-17d53f3ce80f" />
+
+
+
+### Anasayfa
+
 ## 🧰 Kullanılan Teknolojiler & Kütüphaneler
 
 - **Python / Django**
@@ -143,7 +171,7 @@ Scheduler çalışmaya başlamadan önce, veritabanını ilk verilerle doldurmak
 python manage.py shell
 ```
 ```
-from Çocuk.tasks import *
+from WonderVerse.tasks import *
 print("Veri motoru manuel tetikleniyor...")
 gorev_uzay_istasyonu()  # Gezegenler ve SpaceX
 gorev_oyunlari_yukle()  # HTML5 Oyunları
@@ -151,6 +179,7 @@ gorev_pokemon_avla()    # İlk Pokemon
 gorev_minik_sef()       # İlk Tarif
 gorev_heroes()          # Kahramanlar
 gorev_hayvan_saka()     # Kedi, Köpek, Şaka ve Trivia Verileri
+gorev_sanat()           # Sanat
 exit()
 ```
 ### Adım 6: Sunucuyu Başlatın
